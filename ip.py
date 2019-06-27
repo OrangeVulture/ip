@@ -18,6 +18,8 @@
 
 # Validation Sample Input
 # 12.0.0.5,129.0.0.1-129.0.0.5,129.0.0.4,192.0.0.1-192.0.0.45
+# 12.0.0.5,129.0.0.1-129.0.0.5,129.0.0.2-129.0.0.3,192.0.0.1-192.0.0.45
+# 12.0.0.5,129.0.0.1-129.0.0.2,129.0.0.3-129.0.0.5,192.0.0.1-192.0.0.45
 
 
 import netaddr
@@ -41,8 +43,8 @@ if not syntax:
 	syn.append(0)
 
 print(syntax)
+
 for c in syntax:
-	print(c)
 	if c == ',':
 		if not syn:
 			syn.append(0)
@@ -55,7 +57,7 @@ for c in syntax:
 		if syn[-1] == 0:
 			del syn[-1]
 			syn.append(1)
-			syn.append(2)		
+			syn.append(2)	
 
 print("Printing - , List")
 print(syn)
@@ -75,8 +77,9 @@ print(listt)
 
 yx = list(map(list,zip(listt,syn)))
 
-print("Before Merging and Sorting: ")
+print("Before Sorting: ")
 print(yx)
+
 
 yx.sort()
 

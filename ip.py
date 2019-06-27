@@ -24,12 +24,14 @@
 import netaddr
 import re
 
+from datetime import datetime
+start_time = datetime.now()
 
 #Taking Input
 inp = input()		
 
 
-#Parse the String
+#PHASE 1: Parse the String
 
 listt = []
 syn = []
@@ -70,7 +72,7 @@ for i in range(length):
 print("Printing after conversion")
 print(listt)
 
-# Merging and Sorting
+# PHASE 2: Merging and Sorting
 
 yx = list(map(list,zip(listt,syn)))
 
@@ -79,23 +81,29 @@ print(yx)
 
 yx.sort()
 
-print("After Mergng and Sorting: ")
+print("After Merging and Sorting: ")
 print(yx)
 
 
-# Validation
+# PHASE 3: Validation
 
 last_seen = yx[0][1]
+last_notused = yx[0][0]
+
 for not_used, value in yx[1:]:
-	if last_seen == 1 and value != 2:
+	if ((last_seen == 1 and value != 2) or (last_seen == 2 and value == 1 and last_notused > not_used)):
 		print("Error with Range of IP")
 	if last_seen == 0 and value == 2:
-		print("Error with Single IP") 
+		print("Error with Single IP")  
 	last_seen = value
+	last_notused = not_used
 
-# Modification 
+# PHASE 4: Modification 
 
 for sub_list in yx:
+	if sub_list[0] == 0 or sub_list[0] == 4294967295:
+		continue
+
 	if sub_list[1] == 0:
 		index = yx.index(sub_list) 
 		sub_list[0] = sub_list[0] - 1
@@ -111,10 +119,22 @@ for sub_list in yx:
 print("After Mod: ")
 print(yx)
 
-# String Generation
+# PHASE 5: String Generation
 
-if not 0 in yx or not 4294967295 in yx:
-	print("The beginning and end is present")
-else:
-	print("Not present")
+if yx[0][0] != 0:
+	print("The beginning is not present")
+	new_list = [0,3]
+	yx.insert(0,new_list)
+if yx[-1][0] != 4294967295:
+	print("The end is not present")
+	new_list = [4294967295,1]
+	yx.append(new_list)
 
+print("New yx list:")
+print(yx)
+
+
+
+
+end_time = datetime.now()
+print('Duration: {}'.format(end_time - start_time))

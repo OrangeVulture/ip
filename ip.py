@@ -91,10 +91,15 @@ last_seen = yx[0][1]
 last_notused = yx[0][0]
 
 for not_used, value in yx[1:]:
-	if ((last_seen == 1 and value != 2) or (last_seen == 2 and value == 1 and last_notused > not_used)):
+	if (last_seen == 1 and value != 2): 
 		print("Error with Range of IP")
+		exit()
 	if last_seen == 0 and value == 2:
 		print("Error with Single IP")  
+		exit()
+	if (last_seen == 2 and value == 1 and last_notused < not_used):
+		print("Error with Range of IP ulta")
+		exit()
 	last_seen = value
 	last_notused = not_used
 
@@ -116,22 +121,37 @@ for sub_list in yx:
 	if sub_list[1] == 2:
 		sub_list[0] = sub_list[0] + 1
 
-print("After Mod: ")
-print(yx)
-
-# PHASE 5: String Generation
 
 if yx[0][0] != 0:
-	print("The beginning is not present")
+	print("The beginning is not present")		#To be removed later
 	new_list = [0,3]
 	yx.insert(0,new_list)
 if yx[-1][0] != 4294967295:
-	print("The end is not present")
+	print("The end is not present")				#To be removed later
 	new_list = [4294967295,1]
 	yx.append(new_list)
 
-print("New yx list:")
+
+print("After Modification: ")
 print(yx)
+
+# PHASE 5: String Generation
+op_string = ""
+for sub_list in yx:
+	if sub_list[1] == 3: 
+		ip_add = str(netaddr.IPAddress(sub_list[0]))
+		op_string = op_string + ip_add + "-"
+	if sub_list[1] == 0 or sub_list[1] == 1:
+		ip_add = str(netaddr.IPAddress(sub_list[0]))
+		op_string = op_string + ip_add + ","
+	if sub_list[1] == 2:
+		ip_add = str(netaddr.IPAddress(sub_list[0]))
+		op_string = op_string + ip_add + "-"		
+
+op_string = op_string[:-1]
+
+print("Output String:")
+print(op_string)
 
 
 

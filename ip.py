@@ -1,6 +1,3 @@
-import netaddr
-import re
-
 # print(int(netaddr.IPAddress('1.2.3.4')))
 # print(str(netaddr.IPAddress(16909060)))
 
@@ -18,8 +15,14 @@ import re
 #2^4 Part5 129.0.0.1-129.0.0.5,12.0.0.23-12.0.0.25,1.0.0.54,0.0.0.43 || 129.0.0.1-129.0.0.5,1.0.0.54,0.0.0.43,12.0.0.23-12.0.0.25 || 12.0.0.23-12.0.0.25,0.0.0.43,11.0.0.1-11.0.0.5,1.0.0.54
 #2^4 Part6 129.0.0.1-129.0.0.5,1.0.0.54,0.0.0.43,12.0.56.34
 
+
+
 # Validation Sample Input
 # 12.0.0.5,129.0.0.1-129.0.0.5,129.0.0.4,192.0.0.1-192.0.0.45
+
+
+import netaddr
+import re
 
 
 #Taking Input
@@ -86,3 +89,20 @@ for not_used, value in yx[1:]:
 		print("Error with Single IP") 
 	last_seen = value
 
+# Modification 
+
+for sub_list in yx:
+	if sub_list[1] == 0:
+		index = yx.index(sub_list) 
+		sub_list[0] = sub_list[0] - 1
+		new_list = [sub_list[0] + 2, 3]
+		yx.insert(index + 1, new_list)
+
+	if sub_list[1] == 1:
+		sub_list[0] = sub_list[0] - 1
+
+	if sub_list[1] == 2:
+		sub_list[0] = sub_list[0] + 1
+
+print("After Mod: ")
+print(yx)

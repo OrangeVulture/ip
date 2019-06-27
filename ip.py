@@ -31,7 +31,7 @@ if not syntax:
 	syn.append(0)
 
 print(syntax)
-for i, c in enumerate(syntax):
+for c in syntax:
 	print(c)
 	if c == ',':
 		if not syn:
@@ -43,7 +43,7 @@ for i, c in enumerate(syntax):
 			syn.append(1)
 			syn.append(2)
 		if syn[-1] == 0:
-			print("Inside the hyphen: ", syntax[i-1])
+			# print("Inside the hyphen: ", syntax[i-1])
 			del syn[-1]
 			syn.append(1)
 			syn.append(2)		
@@ -64,10 +64,14 @@ print(listt)
 
 # Sorting and Merging
 
-yx = list(zip(listt,syn))
+yx = list(map(list,zip(listt,syn)))
+print("Before MS: ",yx)
 yx.sort()
-print("After Sorting: ")
+print("After Mergng and Sorting: ")
 print(yx)
 
 
 # Validation
+for row in yx:
+	for col in row:
+		print(col)

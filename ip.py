@@ -113,3 +113,8 @@ print(yx)
 
 # String Generation
 
+if not 0 in yx or not 4294967295 in yx:
+	print("The beginning and end is present")
+else:
+	print("Not present")
+

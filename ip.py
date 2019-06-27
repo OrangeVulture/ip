@@ -4,7 +4,7 @@ import re
 # print(int(netaddr.IPAddress('1.2.3.4')))
 # print(str(netaddr.IPAddress(16909060)))
 
-#Sample: 
+#Sample Input: 
 # 2^2  129.0.0.1-129.0.0.5,12.0.0.23-12.0.0.25 || 129.0.0.1-129.0.0.5,12.0.0.5 || 12.0.0.2,11.0.0.1-11.0.0.5 || 1.0.0.54,0.0.0.43
 
 # 2^3 Part1 1.0.0.54,0.0.0.43,12.0.56.34 || 12.0.0.2,11.0.0.1-11.0.0.5,1.0.0.3 || 12.0.0.2,11.0.0.1-11.0.0.5,1.0.0.3-1.0.0.7
@@ -18,7 +18,13 @@ import re
 #2^4 Part5 129.0.0.1-129.0.0.5,12.0.0.23-12.0.0.25,1.0.0.54,0.0.0.43 || 129.0.0.1-129.0.0.5,1.0.0.54,0.0.0.43,12.0.0.23-12.0.0.25 || 12.0.0.23-12.0.0.25,0.0.0.43,11.0.0.1-11.0.0.5,1.0.0.54
 #2^4 Part6 129.0.0.1-129.0.0.5,1.0.0.54,0.0.0.43,12.0.56.34
 
-inp = input()		#Taking Input
+# Validation Sample Input
+# 12.0.0.5,129.0.0.1-129.0.0.5,129.0.0.4,192.0.0.1-192.0.0.45
+
+
+#Taking Input
+inp = input()		
+
 
 #Parse the String
 
@@ -43,7 +49,6 @@ for c in syntax:
 			syn.append(1)
 			syn.append(2)
 		if syn[-1] == 0:
-			# print("Inside the hyphen: ", syntax[i-1])
 			del syn[-1]
 			syn.append(1)
 			syn.append(2)		
@@ -62,7 +67,7 @@ for i in range(length):
 print("Printing after conversion")
 print(listt)
 
-# Sorting and Merging
+# Merging and Sorting
 
 yx = list(map(list,zip(listt,syn)))
 print("Before MS: ",yx)
@@ -72,6 +77,12 @@ print(yx)
 
 
 # Validation
-for row in yx:
-	for col in row:
-		print(col)
+
+last_seen = yx[0][1]
+for not_used, value in yx[1:]:
+	if last_seen == 1 and value != 2:
+		print("Error with Range of IP")
+	if last_seen == 0 and value == 2:
+		print("Error with Single IP") 
+	last_seen = value
+

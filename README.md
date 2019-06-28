@@ -17,7 +17,7 @@ We have a list of lists containing IPs which could be either clashing with each 
 
 #### Phase 4: Modification
 
-Now, we have IP in the list of lists. But they are the IPs which are allowed and we have to generate an output which consists of the blocked IPs. So, we modify the list of lists accordingly. For each O flag, we have to decrease the IP by 1 and insert anorther list after the current index which contains an IP value +1 than the old IP, also a flag of 3 is stored for the corresponding new IP.
+Now, we have IP in the list of lists. But they are the IPs which are allowed and we have to generate an output which consists of the blocked IPs. So, we modify the list of lists accordingly. For each 0 flag, we have to decrease the IP by 1 and insert anorther list after the current index which contains an IP value +1 than the old IP, also a flag of 3 is stored for the corresponding new IP.
 
 For Flag 1, it is the same as 0 but we are not going to be inserting a new list as we know it has some ending range whereas in case of 0, we don't have an ending range so we manually have to insert an IP.
 

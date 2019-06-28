@@ -1,6 +1,6 @@
 # ip
 ## The Problem
-A python program takes input as range or single IP addresses and gives output as all the IP addresses which are not in the input
+A python program takes input as range and/or single IP addresses and gives output as all the IP addresses which are not in the input
 
 I want to make a program in python for which I give the input as IP addresses and/or range of IP addresses. The program should output the rest of IP Addresses other than which have been given as input.
 
@@ -13,7 +13,7 @@ As you can see, the input can either be a range of IP Addresses or can be an ind
 https://stackoverflow.com/questions/56607689/a-python-program-takes-input-as-range-or-single-ip-addresses-and-gives-output-as
 
 
-Some fags decided the question was not relevant and deleted/closed it. Haters gonna hate. I did it. 
+Posted a question for the same on StackOverflow, and some fags decided the question was not relevant and deleted/closed it. Haters gonna hate. I did it. 
 
 ## Solution 
 

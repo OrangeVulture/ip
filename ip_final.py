@@ -46,7 +46,6 @@ def blocked_ip(inp):
 	if not syntax:
 		syn.append(0)
 
-	print(syntax)
 
 	for c in syntax:
 		if c == ',':
@@ -63,32 +62,19 @@ def blocked_ip(inp):
 				syn.append(1)
 				syn.append(2)	
 
-	print("Printing - , List")
-	print(syn)
 
 	listt = re.split(',|-',inp)
-	print("Printing after re.split")
-	print(listt)
 
 	length = len(listt)
 
 	for i in range(length):
 	        listt[i] = int(netaddr.IPAddress(listt[i]))
-	print("Printing after conversion")
-	print(listt)
 
 	# PHASE 2: Merging and Sorting
 
 	yx = list(map(list,zip(listt,syn)))
 
-	print("Before Sorting: ")
-	print(yx)
-
-
 	yx.sort()
-
-	print("After Merging and Sorting: ")
-	print(yx)
 
 
 	# PHASE 3: Validation
@@ -120,10 +106,6 @@ def blocked_ip(inp):
 
 	if (index_s is not None and index_e is not None):
 		del yx[index_s+1:index_e]
-
-	print("")
-	print(yx)
-
 
 
 	last_seen = yx[0][1]
@@ -159,11 +141,9 @@ def blocked_ip(inp):
 
 
 	if yx[0][0] != 0:
-		print("\n0.0.0.0 is not present in the list. Appending....")		#To be removed later
 		new_list = [0,3]
 		yx.insert(0,new_list)
 	if yx[-1][0] != 4294967295:
-		print("255.255.255.255 is not present in the list. Appending....")				#To be removed later
 		new_list = [4294967295,1]
 		yx.append(new_list)
 
@@ -172,11 +152,7 @@ def blocked_ip(inp):
 		if sub_list[0] == prev_ip:
 			index = yx.index(sub_list)
 			del yx[index]
-			print("Success in deleting")
 		prev_ip = sub_list[0]	
-
-	print("After Modification: ")
-	print(yx)
 
 
 	# PHASE 5: String Generation

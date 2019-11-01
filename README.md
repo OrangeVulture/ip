@@ -1,4 +1,4 @@
-# ip
+# ip-inverter
 ## The Problem
 A python program takes input as range and/or single IP addresses and gives output as all the IP addresses which are not in the input
 
